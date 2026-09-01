@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplication.ui.theme.MyApplicationTheme
@@ -52,7 +53,7 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun gerarBloco(cor: Color, altura: Int, largura: Int = altura, texto: String = "", icon: ImageVector ?= null){
+fun GerarBloco(cor: Color, altura: Int, largura: Int = altura, texto: String = "", icon: ImageVector ?= null){
     Surface(
         modifier = Modifier
             .width(largura.dp)
@@ -81,6 +82,7 @@ fun gerarBloco(cor: Color, altura: Int, largura: Int = altura, texto: String = "
         }
     }
 }
+@Preview
 @Composable
 fun TelaMensagem() {
     Surface(
@@ -96,7 +98,7 @@ fun TelaMensagem() {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
 
-                gerarBloco(Color(0xFF1e1e1e), 50, icon = Icons.Default.KeyboardArrowLeft)
+                GerarBloco(Color(0xFF1e1e1e), 50, icon = Icons.Default.KeyboardArrowLeft)
 
                 Text(
                     text = "Nova Mensagem",
@@ -104,7 +106,7 @@ fun TelaMensagem() {
                     modifier = Modifier.padding(top = 14.dp, start = 70.dp),
                     color = Color.White)
 
-                gerarBloco(Color(0xFF757575), 50, 100, "Avançar")
+                GerarBloco(Color(0xFF757575), 50, 100, "Avançar")
             }
 
             Spacer(modifier = Modifier.height(16.dp))
