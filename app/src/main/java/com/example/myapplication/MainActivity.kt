@@ -8,6 +8,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,11 +22,17 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -106,7 +113,7 @@ fun TelaMensagem() {
                     modifier = Modifier.padding(top = 14.dp, start = 70.dp),
                     color = Color.White)
 
-                GerarBloco(Color(0xFF757575), 50, 100, "Avançar")
+                criaBotao(0.7f, "Avançar")
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -118,11 +125,27 @@ fun TelaMensagem() {
             Usuarios("Luana", "luanabanana", imagem = R.drawable.user)
             Usuarios("Leticia", "let_07", imagem = R.drawable.user)
             Usuarios("Maria", "mariaria_franca", imagem = R.drawable.user)
-
         }
     }
 }
 
+@Composable
+fun criaBotao(x: Float, texto: String){
+    var habilitado by remember { mutableStateOf(false) }
+    Button(
+        modifier = Modifier.fillMaxWidth(x),
+        contentPadding = PaddingValues(horizontal = 3.dp, vertical = 3.dp),
+        onClick = {},
+        enabled = habilitado,
+        shape = RoundedCornerShape(13.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.Red,
+            disabledContentColor = Color.LightGray,
+            disabledContainerColor = Color.DarkGray
+        )){
+        Text(text = texto)
+    }
+}
 @Composable
 fun BarraPesquisa(){
     Surface(
@@ -167,6 +190,7 @@ fun Usuarios(nome: String, usuario: String, imagem: Int ?= null){
     {
 
         Row(
+            modifier = Modifier.weight(1f),
             verticalAlignment = Alignment.CenterVertically
         ) {
             // Avatar (circulo)
@@ -193,18 +217,10 @@ fun Usuarios(nome: String, usuario: String, imagem: Int ?= null){
                 Text(text = nome, color = Color.White)
                 Text(text = "@$usuario", color = Color.White)
             }
-        }
 
+        }
         // Botão Adicionar
-        Surface(
-            color = Color(0xFF757575),
-            shape = RoundedCornerShape(5.dp)
-        ) {
-            Text(text = "Adicionar",
-                color = Color.White,
-                modifier = Modifier.padding(horizontal = 18.dp, vertical = 6.dp)
-            )
+        criaBotao(0.25f, "Adicionar")
 
-        }
     }
 }
